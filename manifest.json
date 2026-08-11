@@ -1,7 +1,7 @@
 {
-  "name": "Calculator PWA",
+  "name": "Auteves Quatation",
   "short_name": "Calc",
-  "description": "A simple offline-capable calculator.",
+  "description": "A simple offline-capable Auteves Quatation",
   "start_url": "./index.html",
   "display": "standalone",
   "orientation": "portrait",

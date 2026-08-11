@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calculator PWA</title>
+  <title>Auteves Quatation</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- PWA Meta Tags -->
   <meta name="theme-color" content="#1e293b" />
-  <meta name="description" content="A simple offline-capable calculator PWA." />
+  <meta name="description" content="A simple offline-capable Auteves Quatation" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Calc" />
@@ -20,32 +22,930 @@
   <link rel="apple-touch-icon" href="images/logo.png" />
 
   <style>
-    * { 
-        box-sizing: border-box; 
-        margin: 0; 
-        padding: 0; 
+            :root {
+                --primary: #1e293b; 
+                --accent: #d97706;  
+                --text-main: #334155;
+                --text-muted: #64748b;
+                --border-light: #e2e8f0;
+            }
+
+            body {
+                background-color: #f1f5f9;
+                font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+                color: var(--text-main);
+                margin: 0;
+                padding: 40px 0;
+            }
+            
+            .page {
+                width: 210mm;
+                min-height: 297mm;
+                margin: auto auto 40px auto;
+                background: white;
+                padding: 50px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+                border-radius: 8px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .shop {
+                margin-bottom: 25px;
+            }
+            
+            .logo img {
+                max-height: 70px;
+                object-fit: contain;
+            }
+
+            .shop-address h6 {
+                color: var(--primary);
+                font-weight: 700;
+                letter-spacing: 0.5px;
+                margin-bottom: 6px;
+            }
+
+            .shop-address p {
+                font-size: 13px;
+                line-height: 1.5;
+                color: var(--text-muted);
+                margin: 0;
+            }
+            
+            .shdt {
+                text-align: center;
+                background-color: #f8fafc;
+                padding: 8px;
+                border-radius: 6px;
+                margin-top: 15px;
+                margin-bottom: 15px;
+            }
+
+            .shdt p {
+                margin: 0;
+                font-size: 11px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                font-weight: 600;
+                color: var(--text-muted);
+            }
+            
+            .line {
+                height: 2px;
+                background-color: var(--border-light);
+                margin-bottom: 30px;
+            }
+
+            .cstmr-dtls {
+                display: flex;                
+                justify-content: space-between; 
+                align-items: flex-start;      
+                margin-bottom: 40px;
+            }
+
+            .cstmr-dtls label {
+                font-size: 11px;
+                font-weight: 700;
+                letter-spacing: 0.8px;
+                color: var(--primary);
+                text-transform: uppercase;
+                margin-bottom: 6px;
+            }
+            .Quotation-list{
+                display: flex;                
+                justify-content: space-between; 
+            }
+            .Quotation-list input, .Quotation-list textarea {
+                border: 0;
+                width: 550px;
+                resize: none;
+                overflow: hidden;
+            }
+
+            .name1, .address1, .date-input {
+                border: none;
+                border-bottom: 1px dashed #cbd5e1;
+                outline: none;
+                padding: 4px 0;
+                font-size: 14px;
+                color: var(--text-main);
+                background: transparent;
+                transition: border-color 0.2s ease;
+                width: 250px;
+            }
+
+            .address1 {
+                margin-top: 8px;
+            }
+
+            .date {
+                text-align: right;
+            }
+
+            .date input {
+                text-align: right;
+            }
+
+            .items-table, .items-table2 {
+                margin-top: 20px;
+                flex-grow: 1;
+            }
+
+            .table1, .table2 {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 20px;
+            }
+
+            .table1 th, .table2 th {
+                background-color: var(--primary);
+                color: #ffffff;
+                font-size: 12px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                padding: 12px 16px;
+                text-transform: uppercase;
+                border: none;
+            }
+
+            .table1 td, .table2 td {
+                padding: 8px 12px;
+                border-bottom: 1px solid var(--border-light);
+                vertical-align: top;
+            }
+
+            .table1 input, .table2 input, .table1 textarea, .table2 textarea {
+                width: 100%;
+                border: 1px solid transparent;
+                background-color: transparent;
+                padding: 6px 8px;
+                font-size: 14px;
+                color: var(--text-main);
+                border-radius: 4px;
+                outline: none;
+                transition: all 0.15s ease;
+            }
+
+            .table1 input:focus, .table2 input:focus, .table1 textarea:focus, .table2 textarea:focus {
+                border-color: #cbd5e1;
+                background-color: #f8fafc;
+            }
+
+            .notedesc {
+                display: flex;
+                text-decoration-line: underline;
+                align-items: flex-start;
+            }
+
+            .btn-add-row, .btn-add-row2  {
+                background-color: #f1f5f9;
+                color: var(--primary);
+                border: 1px dashed #cbd5e1;
+                border-radius: 6px;
+                padding: 6px 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.2s ease;
+            }
+            .btn-delete-row2,.btn-delete-row{
+                background-color: #f1f5f9;
+                color: var(--primary);
+                border: 1px dashed #cbd5e1;
+                border-radius: 6px;
+                padding: 6px 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.2s ease;
+
+            }
+
+            .btn-add-row:hover, .btn-add-row2:hover {
+                background-color: var(--primary);
+                color: white;
+                border-color: var(--primary);
+            }
+            .btn-delete-row:hover , .btn-delete-row2:hover{
+                background-color: var(--primary);
+                color: white;
+                border-color: var(--primary);
+            }
+
+            .structure {
+                display: flex;                
+                justify-content: space-between; 
+            }
+            .label {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+            .strinput {
+                display: none;
+                width: 100%;
+                border: none;
+                outline: none;
+            }
+            .dscription , .solarDescriptio {
+                border: none;
+                outline: none;
+            }
+            .items-table2 {
+                display: none;
+            }
+            .total {
+                display: flex;
+                justify-content: space-between; 
+            }
+            .total1-input, .total2-input {
+                text-decoration-line: underline;
+                text-decoration-style: double;
+                border: 0;
+            }
+            .addstr, .opt {
+                font-size: medium;
+                font-weight: 800;
+            }
+            #addPageBtnContainer {
+                display: flex;
+                justify-content: center;
+                margin-top: 20px;
+            }
+
+            textarea.auto-grow {
+                resize: none;
+                overflow: hidden;
+                box-sizing: border-box;
+            }
+           @media print {
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    #addPageBtnContainer,
+    .btn-add-row,
+    .btn-add-row2,
+    .btn-delete-row,
+    .btn-delete-row2,
+    .category-select,
+    .sublist2,
+    .opt,
+    .check {
+        display: none !important;
     }
 
     body {
-      font-family: system-ui, -apple-system, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      color: #fff;
-      padding: 1rem;
+        background-color: transparent !important;
+        padding: 0 !important;
+        margin: 0 !important;
     }
-    h1 { 
-        margin-bottom: 1rem; 
-        font-size: 1.5rem; 
+
+    .page, .last-page {
+        width: 100% !important;
+        min-height: 100vh !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        page-break-after: always; 
+        break-after: page;
+    }
+
+    .last-page {
+        page-break-before: always !important;
+        break-before: page !important;
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+    }
+
+    tr, .structure, .notedesc {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    input, textarea {
+        border: none !important;
+        background: transparent !important;
+    }
+}
+    .last-head {
+        margin-top: 12%;
+
+    }
+    .last-para{
+        margin-top: 3%;
+    }
+    .last-para p{
+        margin-top: 5%;
+    }
+    .last-input input{
+        border: none;
+    }
+    .Thank{
+        margin-top: 10%;
+        font-size: larger;
+        font-weight: 600;
+        margin-left: 25%;
+    }
+    .add-structure {
+        visibility: hidden;
+    }
+    .slr{
+        visibility: hidden;
+        width: 100%;
+    }
+    .solarDescriptio {
+        width: 100%;
+    }
+    .qtNo {
+        font-size: medium;
+        font-weight: 600;
+    }
+    .qtNo input{
+        font-weight: 400;
     }
     
-  </style>
+    
+        </style>
 </head>
 <body>
-  <h1>Hi, I'm Good 🧮</h1>
+        <div id="pagesContainer" class="container d-flex flex-column align-items-center">
+        </div>
+
+        <div id="addPageBtnContainer" class="mb-3">
+            <button id="addPageBtn" type="button" class="btn btn-primary btn-lg shadow">+ Add Page</button>
+            <button id="deletePage" type="button" class="btn btn-primary btn-lg shadow ms-2" >Delete page</button>
+            <button onclick="window.print()" class="btn btn-primary btn-lg shadow ms-2">print</button>
+        </div>
+        <div class="container d-flex flex-column align-items-center ">
+            <div class="page last-page">
+                <div class="shop row align-items-center mt-3">
+                    <div class="logo col-7">
+                        <img src="images\Screenshot 2026-07-14 120928.png" alt="logo2">
+                    </div>
+                    <div class="shop-address col-5 text-end">
+                        <h6>AUTEVES SOLUTIONS</h6>
+                        <p>Smart • Secure • Simple <br>📞 +91 9567 91024 <br>✉ autevessolutions@gmail.com <br> 🌐 www.auteves.com</p>
+                    </div>
+                </div>
+
+                <div class="shdt">
+                    <p>Networking | CCTV | Solar | Home Automation | Access Control</p>
+                </div>
+                <div class="line"></div>
+
+                <div class="last-head">
+                    <h3>THIS QUOTATION IS SUBJECT TO THE FOLLOWING  TERMS AND CONDITIONS:</h3>
+                </div>
+                <div class="last-para">
+                    <p><b>1.Quotation Validity:</b> This quotation is valid for 30 days from the date of issue.</p>
+                    <p><b>2. Price:</b> Prices are based on current market rates. Any change in material cost or availability may result in a revised quotation. </p>
+                    <p><b>3.Warranty:</b> Warranty will be as per the manufacturer's policy. Physical damage, power surges, water damage, misuse, or unauthorized repairs are not covered.  </p>
+                </div>
+                <div class="line mt-5"></div>
+                <div>
+                    <h3>AGREED AND ACCEPTED: </h3>
+                </div>
+                <div class="mt-5 last-input">
+                    <input type="text" placeholder="enter name">
+                    <input type="text" placeholder="enter the title here">
+                    <input type="date">
+                    
+                </div>
+                <div class="Thank">Thank You For Your Business! </div>
+
+            </div>
+
+
+        </div>
+
+        <template id="firstPageTemplate">
+            <div class="page">
+                <div class="shop row align-items-center mt-3">
+                    <div class="logo col-7">
+                        <img src="images\Screenshot 2026-07-14 120928.png" alt="logo2">
+                    </div>
+                    <div class="shop-address col-5 text-end">
+                        <h6>AUTEVES SOLUTIONS</h6>
+                        <p>Smart • Secure • Simple <br>📞 +91 9567 91024 <br>✉ autevessolutions@gmail.com <br> 🌐 www.auteves.com</p>
+                    </div>
+                </div>
+
+                <div class="shdt">
+                    <p>Networking | CCTV | Solar | Home Automation | Access Control</p>
+                </div>
+                <div class="line"></div>
+
+                <div class="cstmr-dtls">
+                    <div>
+                        <div class="qtNo">QUOTE <input type="text" class="name1"></div>
+                        <label>PREPARED FOR</label><br>
+                        <input type="text" placeholder="Client Name " class="name1"><br>
+                        <textarea placeholder="Client Address / Details" class="address1 auto-grow" rows="1"></textarea>
+                    </div>
+                    <div class="date">
+                        <label>PREPARED DATE</label><br>
+                        <input type="date" class="date-input">
+                    </div>
+                </div>
+
+                <div class="Quotation-list">
+                    <div class="quetation">
+                        <input type="text" class="quetation1" style="font-size: larger;">
+                    </div>
+                    <select class="category-select btn btn-warning">
+                        <option value="">Select Category</option>
+                    </select>
+                </div>
+
+                <div class="Quotation-list subList">
+                    <input type="text" class="quetation2" style="font-size: medium; opacity: 0.8;">
+                </div>
+
+                <div class="description-container"></div>
+
+                <div class="items-table">
+                    <table class="table1">
+                        <thead>
+                            <tr>
+                                <th style="width: 50%;">ITEM</th>
+                                <th style="width: 12%;">QTY</th>
+                                <th style="width: 18%;">PRICE</th>
+                                <th style="width: 20%;">TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><textarea class="auto-grow" placeholder="Item description..." rows="1"></textarea></td>
+                                <td><input type="number" placeholder="0"></td>
+                                <td><input type="number" placeholder="0.00"></td>
+                                <td><input type="number" placeholder="0.00"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn-add-row mt-5">+ Add Row</button>
+                    <button type="button" class="btn-delete-row mt-5">- Delete Row</button>
+                    <div class="total mt-3">
+                        <h5>Total</h5>
+                        <div>
+                            <input type="text" placeholder="Total amount" class="total1-input" readonly>
+                        </div>
+                    </div>
+                    <div class="slr mt-3" id="slr">
+                        <textarea name="solar" id="solarPEice" class="solarDescription  auto-grow " style="width: 100%; border: none;" placeholder="Enter the price Details here"></textarea>
+
+                    </div>
+                </div>
+
+                <div class="structure  add-structure mt-3">
+                    <div class="addstr">Additional structure</div>
+                    <div class="check">
+                        <label class="label">
+                            <input type="radio" value="Yes" class="radio-structure">
+                            Yes
+                        </label>
+                        <label class="label"> 
+                            <input type="radio" value="No" class="radio-structure" checked>
+                            No
+                        </label>
+                    </div>
+                </div>
+
+                <div class="structure mt-2">
+                    <textarea class="strinput auto-grow" placeholder="description" style="opacity: 0.8;" rows="1"></textarea>
+                </div>
+
+                <div class="notedesc mt-3">
+                    <label>Note:</label>
+                    <textarea placeholder="Additional note" class="auto-grow" rows="1" style="border:none; outline:none; width: 100%; margin-left: 5px;"></textarea>
+                </div>
+
+                <div class="structure mt-5">
+                    <div class="opt">Optional table</div>
+                    <div class="check">
+                        <label class="label">
+                            Yes
+                            <input type="radio" value="Yes" class="radio-opt-table">
+                        </label>
+                        <label class="label">
+                            No
+                            <input type="radio" value="No" class="radio-opt-table" checked>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="items-table2">
+                    <h1>optional</h1>
+                    <table class="table2">
+                        <thead>
+                            <tr>
+                                <th style="width: 50%;">ITEM</th>
+                                <th style="width: 12%;">QTY</th>
+                                <th style="width: 18%;">PRICE</th>
+                                <th style="width: 20%;">TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><textarea class="auto-grow" placeholder="Item description..." rows="1"></textarea></td>
+                                <td><input type="number" placeholder="0"></td>
+                                <td><input type="number" placeholder="0.00"></td>
+                                <td><input type="number" placeholder="0.00"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn-add-row2">+ Add Row</button>
+                    <button type="button" class="btn-delete-row2">- Delete Row</button>
+                    <div class="total mt-3">
+                        <h5>Total</h5>
+                        <div>
+                            <input type="text" placeholder="Total amount" class="total2-input mt-3" readonly>
+                        </div>
+                    </div>
+                    <div class="slr" id="slr">
+                        <textarea name="solar" id="solarPEice" class="solarDescription  auto-grow mt-2" style="width: 100%; border: none;" placeholder="Enter the price Details here"></textarea>
+
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template id="subsequentPageTemplate">
+            <div class="page">
+                <div class="Quotation-list mt-3">
+                    <div class="quetation">
+                        <input type="text" class="quetation1" style="font-size: larger;">
+                    </div>
+                    <select class="category-select btn btn-warning">
+                        <option value="">Select Category</option>
+                    </select>
+                </div>
+
+                <div class="Quotation-list subList">
+                    <input type="text" class="quetation2" style="font-size: medium; opacity: 0.8;">
+                </div>
+
+                <div class="description-container"></div>
+
+                <div class="items-table">
+                    <table class="table1">
+                        <thead>
+                            <tr>
+                                <th style="width: 50%;">ITEM</th>
+                                <th style="width: 12%;">QTY</th>
+                                <th style="width: 18%;">PRICE</th>
+                                <th style="width: 20%;">TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><textarea class="auto-grow" placeholder="Item description..." rows="1"></textarea></td>
+                                <td><input type="text" placeholder="0"></td>
+                                <td><input type="text" placeholder="0.00"></td>
+                                <td><input type="text" placeholder="0.00"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="button" class="btn-add-row ">+ Add Row</button>
+                    <button type="button" class="btn-delete-row ">- Delete Row</button>
+                    <div class="total mt-3">
+                        <h5>Total</h5>
+                        <div>
+                            <input type="text" placeholder="Total amount" class="total1-input " >
+                        </div>
+                    </div>
+                    <div class="slr" id="slr">
+                        <textarea name="solar" id="solarPEice" class="solarDescription  auto-grow mt-2" style="width: 100%; border: none;" placeholder="Enter the price Details here"></textarea>
+
+                    </div>
+                </div>
+
+                <div class="structure  add-structure mt-3">
+                    <div class="addstr">Additional structure</div>
+                    <div class="check">
+                        <label class="label">
+                            <input type="radio" value="Yes" class="radio-structure">
+                            Yes
+                        </label>
+                        <label class="label"> 
+                            <input type="radio" value="No" class="radio-structure" checked>
+                            No
+                        </label>
+                    </div>
+                </div>
+
+                <div class="structure mt-2">
+                    <textarea class="strinput auto-grow" placeholder="description" style="opacity: 0.8;" rows="1"></textarea>
+                </div>
+
+                <div class="notedesc mt-3">
+                    <label>Note:</label>
+                    <textarea placeholder="Additional note" class="auto-grow" rows="1" style="border:none; outline:none; width: 100%; margin-left: 5px;"></textarea>
+                </div>
+            </div>
+        </template>
+
+        <script>
+    const data = {
+        "categories": [
+            {
+                "id": 101,
+                "name": "Electronics",
+                "subCategories": [
+                    { "id": 1, "name": "Laptop" },
+                    { "id": 2, "name": "Desktop" },
+                    { "id": 3, "name": "Mobile" }
+                ]
+            },
+            {
+                "id": 102,
+                "name": "Furniture",
+                "subCategories": [
+                    { "id": 4, "name": "Chair" },
+                    { "id": 5, "name": "Table" },
+                    { "id": 6, "name": "Sofa" },
+                    { "id": 7, "name": "Bed" }
+                ]    
+            },
+            {
+                "id": 103,     
+                "name": "Solar",
+                "subCategories": [
+                    { "id": 8, "name": "Rice" },
+                    { "id": 9, "name": "Sugar" },
+                    { "id": 10, "name": "Milk" },
+                    { "id": 11, "name": "Oil" }
+                ]
+            }
+        ]
+    };
+
+    let pageCounter = 0;
+
+    function addNewPage() {
+        pageCounter++;
+        const templateId = pageCounter === 1 ? 'firstPageTemplate' : 'subsequentPageTemplate';
+        const template = document.getElementById(templateId).content.cloneNode(true);
+        const pageElement = template.querySelector('.page');
+
+        const structureRadios = pageElement.querySelectorAll('.radio-structure');
+        structureRadios.forEach(radio => radio.name = `choice-radio-${pageCounter}`);
+
+        const optTableRadios = pageElement.querySelectorAll('.radio-opt-table');
+        optTableRadios.forEach(radio => radio.name = `choice2-radio-${pageCounter}`);
+
+        const categorySelect = pageElement.querySelector('.category-select');
+        categorySelect.innerHTML += data.categories
+            .map(item => `<option value="${item.id}">${item.name}</option>`)
+            .join("");
+
+        document.getElementById('pagesContainer').appendChild(template);
+    }
+
+    addNewPage();
+
+    function deletePage() {
+        const pagesContainer = document.getElementById('pagesContainer');
+        if (pageCounter > 1 && pagesContainer.lastElementChild) {
+            pagesContainer.removeChild(pagesContainer.lastElementChild);
+            pageCounter--;
+        }
+    }
+
+    document.getElementById('addPageBtn').addEventListener('click', addNewPage);
+    document.getElementById('deletePage').addEventListener('click', deletePage);
+
+    document.addEventListener('input', function (e) {
+        if (e.target.tagName.toLowerCase() === 'textarea') {
+            autoGrowTextarea(e.target);
+        }
+    });
+
+    function autoGrowTextarea(element) {
+        element.style.height = 'auto';
+        element.style.height = element.scrollHeight + 'px';
+    }
+
+    document.addEventListener('click', function (e) {
+        const page = e.target.closest('.page');
+        if (!page) return;
+
+        if (e.target.classList.contains('btn-add-row')) {
+            const tbody = page.querySelector('.table1 tbody');
+            addRowToTable(tbody, page);
+        }
+
+        if (e.target.classList.contains('btn-add-row2')) {
+            const tbody = page.querySelector('.table2 tbody');
+            addRowToTable(tbody, page);
+        }
+
+        if (e.target.classList.contains('btn-delete-row')) {
+            const tbody = page.querySelector('.table1 tbody');
+            deleteRowFromTable(tbody, page.querySelector('.table1'), page.querySelector('.total1-input'));
+        }
+
+        if (e.target.classList.contains('btn-delete-row2')) {
+            const tbody = page.querySelector('.table2 tbody');
+            deleteRowFromTable(tbody, page.querySelector('.table2'), page.querySelector('.total2-input'));
+        }
+    });
+
+    function toggleSolarColumns(page, isSolar) {
+        const tables = page.querySelectorAll('table');
+        tables.forEach(table => {
+            const ths = table.querySelectorAll('th');
+            if (ths[2]) ths[2].style.display = isSolar ? 'none' : '';
+            if (ths[3]) ths[3].style.display = isSolar ? 'none' : '';
+
+            if (ths[0]) ths[0].style.width = isSolar ? '80%' : '50%';
+
+            const rows = table.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                const tds = row.querySelectorAll('td');
+                if (tds[2]) tds[2].style.display = isSolar ? 'none' : '';
+                if (tds[3]) tds[3].style.display = isSolar ? 'none' : '';
+            });
+        });
+
+        const totalContainers = page.querySelectorAll('.total');
+        const solarDescriptio = page.querySelector('.slr');
+        const addsStructure = page.querySelector('.add-structure');
+        
+        
+        solarDescriptio.style.visibility = isSolar ? 'visible' : 'hiden';
+       addsStructure.style.visibility = isSolar ? 'visible' : 'hiden';
+
+        totalContainers.forEach(container => {
+            container.style.display = isSolar ? 'none' : 'flex';
+        });
+    }
+
+    document.addEventListener('change', function (e) {
+        const page = e.target.closest('.page');
+        if (!page) return;
+
+        if (e.target.classList.contains('category-select')) {
+            const selectedId = Number(e.target.value);
+            const selectedCategory = data.categories.find(item => item.id === selectedId);
+
+            const quetation1 = page.querySelector('.quetation1');
+            const subList = page.querySelector('.subList');
+            const descriptionContainer = page.querySelector('.description-container');
+            const addStructure = page.querySelector('.add-structure');
+
+            descriptionContainer.innerHTML = '';
+            
+            if (!selectedCategory) {
+                quetation1.value = "";
+                subList.innerHTML = '<input type="text" class="quetation2" style="font-size: medium; opacity: 0.8;">';
+                if (addStructure) addStructure.style.visibility = 'hidden';
+                toggleSolarColumns(page, false);
+                return;
+            }
+
+            quetation1.value = selectedCategory.name;
+
+            const isSolar = selectedCategory.name.toLowerCase() === 'solar';
+            toggleSolarColumns(page, isSolar);
+
+            //if (addStructure) {
+                //if (selectedCategory.name === "Electronics") {
+                    //addStructure.style.visibility = 'visible';
+                //} else {
+                  //  addStructure.style.visibility = 'hidden';
+                //}
+            //}
+
+            let description = document.createElement('textarea');
+            description.className = 'dscription auto-grow';
+            description.rows = 1;
+            description.style.fontSize = 'medium';
+            description.style.opacity = '0.6';
+            description.placeholder = 'description';
+            description.style.width = '550px';
+            descriptionContainer.appendChild(description);
+
+            subList.innerHTML = `
+                <input type="text" class="quetation2" style="font-size: medium; opacity: 0.8;">
+                <select class="sublist2 btn btn-warning mt-3">
+                    ${selectedCategory.subCategories.map(sub => `<option value="${sub.name}">${sub.name}</option>`).join("")}
+                </select>
+            `;
+
+            const quetation2 = subList.querySelector('.quetation2');
+            if (selectedCategory.subCategories.length > 0) {
+                quetation2.value = selectedCategory.subCategories[0].name;
+            }
+        }
+
+        if (e.target.classList.contains('sublist2')) {
+            const quetation2 = page.querySelector('.quetation2');
+            if (quetation2) quetation2.value = e.target.value;
+        }
+
+        if (e.target.classList.contains('radio-structure')) {
+            const strInput = page.querySelector('.strinput');
+            strInput.style.display = e.target.value === 'Yes' ? 'block' : 'none';
+            if (e.target.value === 'Yes') autoGrowTextarea(strInput);
+        }
+
+        if (e.target.classList.contains('radio-opt-table')) {
+            const optTable = page.querySelector('.items-table2');
+            if (optTable) optTable.style.display = e.target.value === 'Yes' ? 'block' : 'none';
+        }
+    });
+
+    document.addEventListener('input', function (e) {
+        const row = e.target.closest('tr');
+        if (!row) return;
+
+        const table = row.closest('table');
+        if (!table) return;
+
+        const page = table.closest('.page');
+        updateRowTotal(row);
+
+        if (table.classList.contains('table1')) {
+            calculateTableTotal(page.querySelector('.table1'), page.querySelector('.total1-input'));
+        } else if (table.classList.contains('table2')) {
+            calculateTableTotal(page.querySelector('.table2'), page.querySelector('.total2-input'));
+        }
+    });
+
+    function addRowToTable(tbody, page) {
+        const tr = document.createElement('tr');
+        const placeholders = ["Item description...", "0", "0.00", "0.00"];
+        
+        const categorySelect = page.querySelector('.category-select');
+        const isSolar = categorySelect && categorySelect.options[categorySelect.selectedIndex]?.text.toLowerCase() === 'solar';
+
+        for (let i = 0; i < 4; i++) {
+            const td = document.createElement('td');
+            let input;
+            if (i === 0) {
+                input = document.createElement('textarea');
+                input.className = 'auto-grow';
+                input.rows = 1;
+            } else {
+                input = document.createElement('input');
+                input.type = "text";
+            }
+            input.placeholder = placeholders[i];
+            td.appendChild(input);
+
+            if ((i === 2 || i === 3) && isSolar) {
+                td.style.display = 'none';
+            }
+
+            tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+    }
+
+    function deleteRowFromTable(tbody, table, totalInput) {
+        if (tbody.children.length > 1) {
+            tbody.removeChild(tbody.lastElementChild);
+            calculateTableTotal(table, totalInput);
+        }
+    }
+
+    function updateRowTotal(row) {
+        const inputs = row.querySelectorAll('input, textarea');
+        const qtyInput = inputs[1];
+        const priceInput = inputs[2];
+        const totalInput = inputs[3];
+
+        if (qtyInput && priceInput && totalInput) {
+            const qty = parseFloat(qtyInput.value) || 0;
+            const price = parseFloat(priceInput.value) || 0;
+
+            if (qty > 0 && price > 0) {
+                totalInput.value = (qty * price).toFixed(2);
+            } else {
+                totalInput.value = "";
+            }
+        }
+    }
+
+    function calculateTableTotal(table, totalInput) {
+        if (!table || !totalInput) return;
+        let grandTotal = 0;
+        const rows = table.querySelectorAll('tbody tr');
+
+        rows.forEach(row => {
+            const inputs = row.querySelectorAll('input, textarea');
+            if (inputs[3]) {
+                const rowTotal = parseFloat(inputs[3].value) || 0;
+                grandTotal += rowTotal;
+            }
+        });
+
+        totalInput.value = grandTotal > 0 ? grandTotal.toFixed(2) : "";
+    }
+</script>
+    
 
   <script src="app.js"></script>
 </body>

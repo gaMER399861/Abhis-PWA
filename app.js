@@ -1,4 +1,4 @@
-/* ---------- Calculator Logic ---------- */
+/* ---------- Auteves Quatation Logic ---------- */
 const currentEl = document.getElementById('current');
 const historyEl = document.getElementById('history');
 const statusEl  = document.getElementById('status');
